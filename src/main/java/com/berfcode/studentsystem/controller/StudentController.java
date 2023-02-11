@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/student")
@@ -19,8 +20,9 @@ public class StudentController {
         studentService.saveStudent(student);
         return "New student is added";
     }
+
     @GetMapping("/getAll")
-    public List<Student> getAllStudents(){
+    public List<Student> getAllStudents() {
         return studentService.getAllStudents();
     }
 
@@ -28,4 +30,16 @@ public class StudentController {
     public void deleteById(@PathVariable("id") int id) {
         studentService.deleteById(id);
     }
+
+    @PutMapping("/update")
+    public String update(@RequestBody Student student) {
+        studentService.update(student);
+        return "updated student";
+    }
+    @GetMapping("get/{id}")
+    public Optional<Student> findById(@PathVariable int id) {
+        return studentService.findById(id);
+    }
+
+
 }
