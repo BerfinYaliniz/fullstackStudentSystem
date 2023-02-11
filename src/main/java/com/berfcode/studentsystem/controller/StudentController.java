@@ -23,4 +23,9 @@ public class StudentController {
     public List<Student> getAllStudents(){
         return studentService.getAllStudents();
     }
+
+    @DeleteMapping("delete/{id}")
+    public void deleteById(@PathVariable("id") int id) {
+        studentService.deleteById(id);
+    }
 }
